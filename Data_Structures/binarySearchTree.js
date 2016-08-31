@@ -22,3 +22,14 @@ binaryTreePrototype.insert = function(value) {
 		this.left === null ? this.left = BinarySearchTree(value) : this.left.insert(value);
 	}
 }
+
+binaryTreePrototype.contains = function(value) {
+	// If the current trees value is what we are looking for return true.
+	if(value === this.value) return true;
+	// If the current trees value is less than what we are looking for we search right.
+	// We first make sure right is not null. Then we check to see if we have found what we want.
+	// Recuse and return the boolean of what we find. 
+	else if(value > this.value) return Boolean(this.right && this.right.contains(value));
+	//Same for the left side. 
+	else return Boolean(this.left && this.left.contains(value));
+}
