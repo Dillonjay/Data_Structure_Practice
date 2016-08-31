@@ -33,3 +33,12 @@ binaryTreePrototype.contains = function(value) {
 	//Same for the left side. 
 	else return Boolean(this.left && this.left.contains(value));
 }
+
+binaryTreePrototype.each(callBack){
+	// Run the callback function the current value.
+	callback(this.value);
+	// If right is not null recurse.
+	if(this.right) this.right.each(callBack);
+	// If left is not null recurse.
+	if(this.left) this.left.each(callBack);
+}
