@@ -14,6 +14,11 @@ Stack.prototype.pop = function(){
 	return this.storage.pop();
 }
 
+Stack.prototype.size = function() {
+	// return the length of our storage. 
+	return this.storage.length;
+}
+
 // Pseudoclassical instantiation pattern using an object as storage.
 
 
