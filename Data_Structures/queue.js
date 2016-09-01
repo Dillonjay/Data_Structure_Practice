@@ -14,6 +14,10 @@ Queue.prototype.dequeue = function() {
 	return this.storage.pop();
 };
 
+Queue.prototype.size = function() {
+	// Return the length of our queue.
+	return this.storage.length;
+};
 
 
 // Prototypal instantiation pattern using an object as storage.
