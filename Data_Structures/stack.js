@@ -1,4 +1,5 @@
-// Using an array as storage.
+// Pseudoclassical instantiation pattern using an array as storage.
+
 function Stack(){
 	this.storage = [];
 }
@@ -7,8 +8,13 @@ Stack.prototype.push = function(value){
 	// push the value into the storage array. 
 	this.storage.push(value);
 }
-// Using an object as storage.
 
+Stack.prototype.pop = function(){
+	// return the value of the item that is taken out of the storage array.
+	return this.storage.pop();
+}
+
+// Pseudoclassical instantiation pattern using an object as storage.
 
 
 
