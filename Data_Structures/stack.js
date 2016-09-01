@@ -24,16 +24,22 @@ Stack.prototype.size = function() {
 function Stack(){
 	var stack = Object.create(stackMethods);
 	stack.storage = {};
-	stack.size = 0;
+	stack.stackSize = 0;
 	return stack;
 }
 
 var stackMethods = {};
 
+stackMethods.push(value){
+	//Store the value at whatever number size is. Like an array index.
+	this.storage[stackSize] = value;
+	this.stackSize++;
+};
+
 stackMethods.size = function() {
 	// Return the size.
-	return this.size;
-}
+	return this.stackSize;
+};
 
 
 
