@@ -1,6 +1,6 @@
 // Pseudoclassical instantiation pattern using an array as storage.
 
-function Queue(){
+function Queue() {
 	this.storage = [];
 };
 
@@ -21,3 +21,20 @@ Queue.prototype.size = function() {
 
 
 // Prototypal instantiation pattern using an object as storage.
+
+function Queue() {
+	var queue = Object.create(queueMethods);
+	this.storage = {};
+	queue.end = 0;
+	queue.start = 0;
+	return queue;
+}
+
+var queueMethods = {};
+
+queueMethods.enqueue = function(value) {
+	// Store the value at the incremented number. (The end of the line)
+	this.storage[this.end] = value;
+	this.end++
+}
+
