@@ -47,3 +47,7 @@ queueMethods.dequeue = function() {
 	return deleted;
 };
 
+queueMethods.size = function() {
+	return this.end - this.start;
+}
+
