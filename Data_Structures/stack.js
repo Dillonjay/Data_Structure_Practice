@@ -38,7 +38,7 @@ stackMethods.push(value) {
 
 stackMethods.pop = function() {
 	// Only subtract from size if size is greater than zero. 
-	stackSize && stackSize--;
+	this.stackSize && this.stackSize--;
 	// Save what we are about to delete so we can return it. 
 	var deleted = this.storage[this.stackSize];
 	delete this.storage[this.stackSize];
