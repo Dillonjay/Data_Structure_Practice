@@ -33,8 +33,17 @@ function Queue() {
 var queueMethods = {};
 
 queueMethods.enqueue = function(value) {
-	// Store the value at the incremented number. (The end of the line)
+	// Store the value at the incremented number. (The end of the line).
 	this.storage[this.end] = value;
 	this.end++
-}
+};
+
+queueMethods.dequeue = function() {
+	// Take off and return the front of the line.
+	var deleted = this.storage[this.start];
+	delete this.storage[this.start];
+	// Only increment start if the queue is not empty.
+	this.size() && this.start--;
+	return deleted;
+};
 
