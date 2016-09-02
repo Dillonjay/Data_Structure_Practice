@@ -19,7 +19,7 @@ graphMethods.contains = function(node) {
 	return Boolean(this.nodes[node]);
 };
 // Removes a node completely from the graph. 
-graphMethod.removeNode = function(node) {
+graphMethods.removeNode = function(node) {
 	//first we check to see if the node exists.
 	if(this.nodes[node]){
 		//If it does then we wil remove all connections to any other nodes before deleting. 
@@ -36,3 +36,10 @@ graphMethods.hasEdge = function(fromNode, toNode) {
 	if(this.nodes[fromNode]) return Boolean(this.nodes[fromNode].edges[toNode])
 };
 // Adds a connection between two nodes.
+graphMethods.addEdge = function(fromNode, toNode) {
+	// First, make sure both nodes are represented in the graph. If not, return.
+	if(!this.nodes[fromNode] || this.nodes[toNode]) return;
+	// Connect them both by adding eachother to their edges object.
+	this.nodes[fronNode].edges[toNode] = toNode;
+	this.nodes[toNode].edges[fromNode] = fromNode;
+};
