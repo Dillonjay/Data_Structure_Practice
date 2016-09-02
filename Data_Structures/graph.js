@@ -43,3 +43,11 @@ graphMethods.addEdge = function(fromNode, toNode) {
 	this.nodes[fronNode].edges[toNode] = toNode;
 	this.nodes[toNode].edges[fromNode] = fromNode;
 };
+// Removes a connection between two nodes.
+graphMethods.removeEdge = function(fromNode, toNode) {
+	// Make sure both nodes are present. 
+	if(!this.nodes[fromNode] || this.nodes[toNode]) return;
+	// Remove the connection.
+	delete this.nodes[fromNode].edges[toNode];
+	delete this.nodes[toNode].edges[fromNode];
+};
