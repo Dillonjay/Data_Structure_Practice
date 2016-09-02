@@ -38,15 +38,15 @@ graphMethods.hasEdge = function(fromNode, toNode) {
 // Adds a connection between two nodes.
 graphMethods.addEdge = function(fromNode, toNode) {
 	// First, make sure both nodes are represented in the graph. If not, return.
-	if(!this.nodes[fromNode] || this.nodes[toNode]) return;
+	if(!this.nodes[fromNode] || !this.nodes[toNode]) return;
 	// Connect them both by adding eachother to their edges object.
-	this.nodes[fronNode].edges[toNode] = toNode;
+	this.nodes[fromNode].edges[toNode] = toNode;
 	this.nodes[toNode].edges[fromNode] = fromNode;
 };
 // Removes a connection between two nodes.
 graphMethods.removeEdge = function(fromNode, toNode) {
 	// Make sure both nodes are present. 
-	if(!this.nodes[fromNode] || this.nodes[toNode]) return;
+	if(!this.nodes[fromNode] || !this.nodes[toNode]) return;
 	// Remove the connection.
 	delete this.nodes[fromNode].edges[toNode];
 	delete this.nodes[toNode].edges[fromNode];
