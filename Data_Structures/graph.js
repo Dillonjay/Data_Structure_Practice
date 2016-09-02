@@ -51,3 +51,10 @@ graphMethods.removeEdge = function(fromNode, toNode) {
 	delete this.nodes[fromNode].edges[toNode];
 	delete this.nodes[toNode].edges[fromNode];
 };
+// Runs a callback on each node in the graph.
+graphMethods.forEach = function(callBack) {
+	// Loop through the nodes and run the callback function on each one. 
+	for(var node in this.nodes){
+		callBack(node);
+	};
+};
