@@ -25,3 +25,10 @@ treeMethods.contains = function(target) {
 	})
 	return answer;
 };
+// Runs a callback on each value in the tree.
+treeMethods.each = function(callback) {
+	// Run the callback on the current value.
+	callback(this.value);
+	// Using recursion, run the callback on every child value.
+	this.children.forEach(tree => tree.each(callback))
+};
