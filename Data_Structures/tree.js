@@ -4,4 +4,11 @@ var Tree = function(value){
 	newTree.children = [];
 	newTree.value = value;
 	return newTree;
-}
+};
+
+var treeMethods = {};
+
+treeMethods.addChild = function(value){
+	this.children.push(Tree(value));
+};
+
