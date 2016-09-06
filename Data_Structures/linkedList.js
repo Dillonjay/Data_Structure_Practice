@@ -55,7 +55,18 @@ linkedListMethods.contains = function(target) {
 };
 // Display every value in the list.
 linkedListMethods.display = function() {
-
+	// Store the each links value.
+	var answer = [];
+	if(!this.head) return null;
+	// If the list is empty, return null.
+	var link = this.head;
+	// While there is a link, push the links value into the answer array.
+	while(link){
+		answer.push(link.value);
+		link = link.next;
+	}
+	// Return the answer array.
+	return answer;
 };
 
 
