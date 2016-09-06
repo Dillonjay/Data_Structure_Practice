@@ -41,7 +41,17 @@ linkedListMethods.removeHead = function() {
 };
 // Check to see if the list contains a value.
 linkedListMethods.contains = function(target) {
-
+	// Declare a link variable that points to the first link in the list.
+	var link = this.head;
+	// While there is a link, check if the links value is the target we are searching for.
+	while(link){
+		// If we find the target, return true.
+		if(link.value === target) return true;
+		// Point link to the next link in the list.
+		link = link.next;
+	}
+	// If we dont find the target after looping through all the links, return false.
+	return false;
 };
 // Display every value in the list.
 linkedListMethods.display = function() {
