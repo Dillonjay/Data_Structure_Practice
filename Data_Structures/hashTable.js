@@ -65,13 +65,13 @@ HashTable.prototype.insert = function(key,value) {
 	var bucket = this.storage.get(index) || [];
 	// Loop through the bucket to check if the key is already stored.
   	bucket.forEach(item => {
-    	var tuple = item;
+    	
     	// If the key is already sotred, replace the value with the new value.
-    	if(tuple[0]=== key) {
+    	if(item[0]=== key) {
      	 // Hold the old value.
-     	 var old = tuple[1]
+     	 var old = item[1]
      	 // Replace the old value with the new.
-     	 tuple[1] = value;
+     	 item[1] = value;
       	// Return the old value.
       	return old;
     	};
