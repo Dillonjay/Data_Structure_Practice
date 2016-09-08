@@ -57,9 +57,38 @@ var HashTable = function() {
 	this.storage = storageArray(this.limit)
 };
 
-
-HashTable.prototype.insert = function() { 
-
+// Insert a key/value pair into the hashtable.
+HashTable.prototype.insert = function(key,value) { 
+	// First hash the key to get an index for storing the pair. 
+	var index = hashFun(key, this.limit);
+	// Either create a new bucket or get the bucket at the hashed index.
+	var bucket = this.storage.get(index) || [];
+	// Loop through the bucket to check if the key is already stored.
+  	bucket.forEach(item => {
+    	var tuple = item;
+    	// If the key is already sotred, replace the value with the new value.
+    	if(tuple[0]=== key) {
+     	 // Hold the old value.
+     	 var old = tuple[1]
+     	 // Replace the old value with the new.
+     	 tuple[1] = value;
+      	// Return the old value.
+      	return old;
+    	};
+  	});
+  	// If the key is not already stored, push the key and value into the bucket.
+  	bucket.push([key, value]);
+  	// Set the bucket in the storage array at the hashed index.
+  	this.storage.set(index, bucket);
+  	// Increase the size.
+  	this.size++;
+  	// Next, check and to see if you need to resize the storage. 
+  	// If the storage is 75 percent full, resize.
+  	if (this.size > this.limit * 0.75) {
+    	this.resize(this.limit * 2);
+  	};
+  	// Finally, after all the work is done return undefined. s
+  	return undefined;
 };
 
 HashTable.prototype.retrieve = function() {
