@@ -121,7 +121,7 @@ HashTable.prototype.remove = function(key) {
   	// Create an answer variable to return at the end.
   	var answer = undefined;
   	// Loop through the bucket and search for the key we want to remove. 
-    bucket.forEach(item => {
+	bucket.forEach(item => {
       if(item[0] === key) {
     	// If it is found, splice the key and value out of the bucket.
         bucket.splice(bucket.indexOf(item),1);
