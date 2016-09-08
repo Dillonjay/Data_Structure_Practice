@@ -91,8 +91,22 @@ HashTable.prototype.insert = function(key,value) {
   	return undefined;
 };
 
-HashTable.prototype.retrieve = function() {
-
+HashTable.prototype.retrieve = function(key) {
+	// Hash the key so we know what bucket to look in. 
+	var index = hashFun(key, this.limit);
+  	// Grab the bucket at the appropriate index.
+  	var bucket = this.storage.get(index) || [];
+  	// Create an answer variable to return at the end.
+  	var answer = undefined;
+  	// Loop through the bucket and search for the key. 
+  	bucket.forEach( item => {
+    	// If it is found, store the value in the answer variable. 
+    	if(item[0] === key) {
+     		answer = item[1];
+    	};
+  	})
+  	// Return the answer variable. Will either be undefined or the value of the key.
+  	return answer;
 };
 
 HashTable.prototype.remove = function() {
