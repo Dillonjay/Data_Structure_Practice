@@ -25,12 +25,20 @@ var storageArray = function(limit) {
   		//return the bucket.
   		return storage[index];	
     };
+
+    // Set a bucket.
 	storageArray.set = function(index, value) {
-   
+   		checkLimit(index);
+   		// Set bucket at the appropriate index.
+   		storage[index] = value;
     };
+
+    // Run a callback on each bucket. 
 	storageArray.each = function(callback) {
-  
-   
+  		storage.forEach((item, index, storage) => {
+  			// Call the callback on the bucket the, index and the storage array.
+      		callback(item, index, storage);
+    	})
     };
 
 	var checkLimit = function(index) {
