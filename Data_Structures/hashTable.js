@@ -63,17 +63,19 @@ HashTable.prototype.insert = function(key,value) {
 	var index = hashFun(key, this.limit);
 	// Either create a new bucket or get the bucket at the hashed index.
 	var bucket = this.storage.get(index) || [];
+	// Create an answer variable to return at the end. 
+	var answer = undefined;
 	// Loop through the bucket to check if the key is already stored.
   	bucket.forEach(item => {
     	
     	// If the key is already sotred, replace the value with the new value.
     	if(item[0]=== key) {
-     	 // Hold the old value.
-     	 var old = item[1]
-     	 // Replace the old value with the new.
-     	 item[1] = value;
-      	// Return the old value.
-      	return old;
+     		// Hold the old value.
+     		var old = item[1]
+     		// Replace the old value with the new.
+     		item[1] = value;
+      		// Point the answer variable to the old value.
+      		answer = old;
     	};
   	});
   	// If the key is not already stored, push the key and value into the bucket.
@@ -88,9 +90,10 @@ HashTable.prototype.insert = function(key,value) {
     	this.resize(this.limit * 2);
   	};
   	// Finally, after all the work is done return undefined. s
-  	return undefined;
+  	return answer;
 };
 
+// Retrieve a value of a specific key.
 HashTable.prototype.retrieve = function(key) {
 	// Hash the key so we know what bucket to look in. 
 	var index = hashFun(key, this.limit);
@@ -109,8 +112,30 @@ HashTable.prototype.retrieve = function(key) {
   	return answer;
 };
 
-HashTable.prototype.remove = function() {
-
+HashTable.prototype.remove = function(key) {
+	// Hash the key so we know what bucket to look in. 
+	var index = hashFun(key, this.limit);
+	// Grab the bucket at the appropriate index.
+  	var bucket = this.storage.get(index) || [];
+  	// Create an answer variable to return at the end.
+  	var answer = undefined;
+  	// Loop through the bucket and search for the key we want to remove. 
+    bucket.forEach(item => {
+      if(item[0] === key) {
+    	// If it is found, splice the key and value out of the bucket.
+        bucket.splice(bucket.indexOf(item),1);
+        // Decrease the hashtable size.
+        this.size--;
+        // If the size is now less than 25 percent of the limit, resize.
+        if (this.size < this.limit * 0.25) {
+        	// Resize by half of the current limit.
+        	this.resize(Math.floor(this.limit / 2));
+        }
+        answer = item[1];
+      }
+    })
+    // Return the answer variable. Will either be undefined or the value of the key.
+  	return answer;
 };
 
 HashTable.prototype.resize = function() {
