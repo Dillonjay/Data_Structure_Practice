@@ -18,7 +18,7 @@ var storageArray = function(limit) {
   var storageArray = {};
 
   storageArray.get = function(index) {
-  
+  	
   };
   storageArray.set = function(index, value) {
    
@@ -29,7 +29,10 @@ var storageArray = function(limit) {
   };
 
   var checkLimit = function(index) {
-  
+  	// Make sure that the index is actually a number.
+  	if(index.constructor !== Number) throw new Error('Argument must be a number');
+  	// Make sure the index is below the storage limit. 
+  	if(index >= limit) throw new Error('Error, trying to access an index that is over the limit');
   };
 
   return storageArray;
