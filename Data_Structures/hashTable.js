@@ -112,6 +112,7 @@ HashTable.prototype.retrieve = function(key) {
   	return answer;
 };
 
+// Remove a specific key/value pair from your hashtable.
 HashTable.prototype.remove = function(key) {
 	// Hash the key so we know what bucket to look in. 
 	var index = hashFun(key, this.limit);
@@ -138,8 +139,31 @@ HashTable.prototype.remove = function(key) {
   	return answer;
 };
 
-HashTable.prototype.resize = function() {
+// Resize your hashtables storage when needed. 
+// Double size limit when the hash table is 75 precent full.
+// Down size by half of limit when hash table is less than 25 precent full. 
+HashTable.prototype.resize = function(newLimit) {
+	// Hold on to the old storage before you resize.
+	var old = this.storage;
+	// In this case we are going to have a minimum limit of 8.
+	newLimit = Math.max(newLimit, 8);
+	// If the newLimit is equal to 8 return.
+	if(newLimit === this.limit) return; 
+	// Otherwise we change the hash tables limit to the newLimit.
+	this.limit = newLimit;
+	// Create a new storage array with the new size limit.
+	this.storage = storageArray(this.limit);
+	// Reset the size of the hash table.
+	this.size = 0;
 
+	// Loop through the old storage using the storageArray each method.
+	old.forEach(bucket => {
+		// Loop through each bucket. 
+		bucket.each( item => {
+			// Insert all of the key value pairs into the new storage.
+			this.insert(item[0], item[1])
+		})
+	})
 };
 
 
